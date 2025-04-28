@@ -1,86 +1,91 @@
 Audio Transcription Tool
-
 Overview
+Audio Transcription Tool is a complete solution for the automatic transcription of audio files using OpenAI’s Whisper model. Designed for operational use, the tool offers efficient processing of large audio datasets, ensuring high transcription quality, robust metadata collection, and clear output structuring.
 
-This project provides a complete script for automatically transcribing audio files using OpenAI's Whisper model.
-The code has been extensively tested and is ready for operational use.
+Ideal for forensic analysts, researchers, and professionals needing reliable speech-to-text conversion across a variety of audio formats.
 
 Features
+Compressed File Extraction: Automatically extracts .zip and .rar files (requires rarfile module for .rar support).
 
-✅ Extraction of compressed files (.zip and .rar supported if the rarfile module is installed).
+Recursive Audio Search: Detects audio files within folders and subfolders automatically.
 
-✅ Recursive search for audio files across folders and subfolders.
+Automatic Transcription: Converts audio to text using OpenAI's Whisper model (supports multiple audio formats).
 
-✅ Automatic audio transcription using Whisper (supports multiple formats).
+Metadata Collection: Captures file size, audio duration, and last modification date.
 
-✅ Metadata collection: file size, duration, modification date.
+Consolidated JSON Reporting: Generates a detailed .json report combining metadata and transcribed text.
 
-✅ Generation of a complete transcription report in .json format, combining metadata and text.
-
-✅ Progress monitoring through a clear and responsive progress bar (tqdm).
+Progress Monitoring: Real-time progress bar using tqdm for tracking processing status.
 
 Requirements
-
-Python 3.12
+Python: 3.12
 
 Libraries
-
 whisper
 
 pydub
 
 tqdm
 
-rarfile (optional, for .rar extraction)
+rarfile (optional, for .rar extraction support)
 
-You can install the required packages via:
+Install all dependencies via:
 
+bash
+Copiar
+Editar
 pip install -r requirements.txt
-
 Usage
+Clone the repository or copy the script to your environment.
 
-Clone the repository or copy the script.
+Install dependencies:
 
-Install dependencies using the provided command.
-
+bash
+Copiar
+Editar
+pip install -r requirements.txt
 Run the script:
 
+bash
+Copiar
+Editar
 python script.py
+Follow the prompts:
 
-Follow the on-screen prompts:
+Select the input directory (containing your audio files or compressed archives).
 
-Specify the input directory (where your audio files or compressed archives are located).
-
-Specify the output directory (where the transcription reports will be saved).
+Select the output directory (where the JSON reports will be saved).
 
 How It Works
+The script first extracts any .zip or .rar archives found.
 
-The script first extracts any .zip and .rar archives found.
-
-It searches for audio files across all nested folders.
+It searches recursively for supported audio files in all subfolders.
 
 For each audio file:
 
-Metadata such as size, duration, and last modification date is collected.
+Metadata (size, duration, modification date) is collected.
 
-The audio is transcribed using Whisper.
+Transcription is performed using OpenAI Whisper.
 
-A structured dictionary is created with all the information.
+Data is structured into a dictionary.
 
-After processing all files, a single .json file is generated containing the complete report.
+Finally, a single .json report consolidates all audio information and transcriptions.
 
 Notes
+If the rarfile library is not installed, .rar files will be skipped automatically (with a warning).
 
-If the rarfile module is not installed, .rar files will be skipped automatically (with a warning).
+To improve transcription quality, you can upgrade the Whisper model to "medium" or "large".
 
-For higher transcription quality, you may switch the Whisper model to "medium" or "large".
+Supported audio file extensions include:
 
-Files from all supported audio extensions are processed: .mp3, .wav, .m4a, .aac, .flac, .ogg, .caf, .amr, .opus.
+.mp3, .wav, .m4a, .aac, .flac, .ogg, .caf, .amr, .opus.
 
 Example Output
+Each entry in the generated .json report will have the following structure:
 
-Each entry in the final .json report includes:
-
+json
+Copiar
+Editar
 {
     "arquivo": "example_audio.m4a",
     "caminho": "C:/Users/Example/Path/example_audio.m4a",
@@ -89,9 +94,13 @@ Each entry in the final .json report includes:
     "data_modificacao": "2025-04-28T15:42:30",
     "transcricao": "Hello, this is the content transcribed from the audio file."
 }
-
 Current Status
+✅ Stable and Operational: The script has been extensively tested.
 
-✅ Stable and operational: The script has been tested and validated.
+🛠️ Extensible: Easily adaptable for future improvements such as:
 
-🛠️ Extensible: Future improvements such as multi-language support and error handling enhancements can be easily incorporated.
+Multilanguage transcription
+
+Advanced error handling
+
+Audio segmentation and speaker identification
